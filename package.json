@@ -1,12 +1,12 @@
 {
-	"name": "users",
-	"version": "1.0.0",
-	"description": "",
+	"name": "practice-with-tdd-mongodb",
+	"version": "0.0.1",
+	"description": "tdd mongodb practice",
 	"main": "index.js",
 	"scripts": {
-		"test": "mocha"
+		"test": "mocha test/**/*.test.js --watch --reporter list"
 	},
-	"author": "",
+	"author": "Diego Weinmann",
 	"license": "ISC",
 	"dependencies": {
 		"chai": "^4.2.0",
