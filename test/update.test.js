@@ -47,13 +47,12 @@ describe('Updating users...', () => {
 	})
 
 	it('can increment the post count by 1', async () => {
-		return User.updateMany({ name: 'Joe' }, { $inc: { postCount: 1 } })
-			.then((users) => {
-				return User.find({})
-			})
-			.then((users) => {
-				expect(users.length).to.equal(1)
-				expect(users[0].postCount).to.equal(1)
+		joe.posts.push({ title: 'new post' })
+		return joe
+			.save()
+			.then(() => User.findOne({ name: 'Joe' }))
+			.then((user) => {
+				expect(user.postCount).to.equal(1)
 			})
 	})
 })

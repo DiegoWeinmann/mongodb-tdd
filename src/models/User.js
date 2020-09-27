@@ -10,10 +10,13 @@ const UserSchema = new mongoose.Schema({
 			message: 'The name must be at least 3 characters long.',
 		},
 	},
-  postCount: Number,
-  posts: {
-    type: [PostSchema]
-  }
+	posts: {
+		type: [PostSchema],
+	},
+})
+
+UserSchema.virtual('postCount').get(function() {
+	return this.posts.length
 })
 
 const User = mongoose.model('User', UserSchema)
