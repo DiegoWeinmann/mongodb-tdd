@@ -4,7 +4,7 @@
 	"description": "tdd mongodb practice",
 	"main": "index.js",
 	"scripts": {
-		"test": "nodemon --exec 'mocha -R list'"
+		"test": "nodemon --exec 'mocha -R spec'"
 	},
 	"author": "Diego Weinmann",
 	"license": "ISC",
