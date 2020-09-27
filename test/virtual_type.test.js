@@ -1,7 +1,7 @@
 const { expect } = require('chai')
 const User = require('../src/models/User')
 
-describe.only('Virtual Types...', () => {
+describe('Virtual Types...', () => {
 	it('postCount returns number of posts', async () => {
 		const joe = new User({ name: 'Joe', posts: [{ title: 'PostTitle' }] })
 		return joe

@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 
 before((done) => {
-  console.clear()
+	console.clear()
 	mongoose.connect('mongodb://localhost:27017/users_test', {
 		useUnifiedTopology: true,
 		useNewUrlParser: true,
@@ -21,12 +21,9 @@ before((done) => {
 		})
 })
 
-beforeEach((done) => {
-	if (mongoose.connection.collections.users) {
-		mongoose.connection.collections.users.drop((err, result) => {
-			done()
-		})
-	} else {
-		done()
+beforeEach(async () => {
+	const collections = await mongoose.connection.db.collections()
+	for await (let collection of collections) {
+		await collection.deleteMany({})
 	}
 })
