@@ -15,4 +15,13 @@ describe('Validation records...', () => {
 			'The name must be at least 3 characters long.'
 		)
 	})
+
+	it('disallows invalid records from being saved', async () => {
+		const user = new User({ name: 'Al' })
+		return user.save().catch((err) => {
+			expect(err.errors.name.message).to.equal(
+				'The name must be at least 3 characters long.'
+			)
+		})
+	})
 })
