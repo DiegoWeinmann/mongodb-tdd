@@ -6,7 +6,7 @@ describe('Updating users...', () => {
 	let newName
 
 	beforeEach(async () => {
-		joe = new User({ name: 'Joe' })
+		joe = new User({ name: 'Joe', postCount: 0 })
 		newName = 'test'
 		return joe.save()
 	})
@@ -24,7 +24,7 @@ describe('Updating users...', () => {
 			})
 	})
 
-	it('Model updateOne', () => {
+	it('Model updateOne', async () => {
 		return User.updateOne({ name: 'Joe' }, { name: newName })
 			.then(() => {
 				return User.find({})
@@ -43,6 +43,17 @@ describe('Updating users...', () => {
 			.then((users) => {
 				expect(users.length).to.equal(1)
 				expect(users[0].name).to.equal(newName)
+			})
+	})
+
+	it('can increment the post count by 1', async () => {
+		return User.updateMany({ name: 'Joe' }, { $inc: { postCount: 1 } })
+			.then((users) => {
+				return User.find({})
+			})
+			.then((users) => {
+				expect(users.length).to.equal(1)
+				expect(users[0].postCount).to.equal(1)
 			})
 	})
 })
