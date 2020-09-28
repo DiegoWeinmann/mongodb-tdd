@@ -5,7 +5,7 @@ const User = require('../src/models/User')
 const BlogPost = require('../src/models/BlogPost')
 const Comment = require('../src/models/Comment')
 
-describe.only('Associations...', () => {
+describe('Associations...', () => {
 	let joe, blogPost, comment
 
 	beforeEach(async () => {
@@ -49,5 +49,5 @@ describe.only('Associations...', () => {
         expect(user.blogPosts[0].comments[0].content).to.equal(comment.content)
 				expect(user.blogPosts[0].comments[0].user.name).to.equal(joe.name)
 			})
-	})
+  })
 })

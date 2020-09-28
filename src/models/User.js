@@ -23,6 +23,15 @@ UserSchema.virtual('postCount').get(function() {
 	return this.posts.length
 })
 
+UserSchema.pre('remove', async function(next) {
+  const BlogPost = mongoose.model('BlogPost')  
+  BlogPost.deleteMany({ _id: { $in: this.blogPosts } })
+    .then(results => {
+      console.log(results)
+      next()
+    })
+})
+
 const User = mongoose.model('User', UserSchema)
 
 module.exports = User
