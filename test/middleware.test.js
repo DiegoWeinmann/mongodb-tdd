@@ -2,7 +2,7 @@ const { expect } = require('chai')
 const User = require('../src/models/User')
 const BlogPost = require('../src/models/BlogPost')
 
-describe.only('Middleware...', () => {
+describe('Middleware...', () => {
 	let joe, blogPost
 
 	beforeEach(() => {
